@@ -256,7 +256,7 @@ def toW3Cprov(prov, format='w3c-prov-json'):
             else:
                 if key == 'location':
 
-                    dic.update({"prov:location": prov[key]})
+                    dic.update({"prov:atLocation": prov[key]})
                 else:
                     dic.update({vc[key]: prov[key]})
 
@@ -287,7 +287,7 @@ def toW3Cprov(prov, format='w3c-prov-json'):
 
             if key == 'location':
 
-                parent_dic.update({"prov:location": str(x[key])})
+                parent_dic.update({"prov:atLocation": str(x[key])})
             else:
                 parent_dic.update({vc[key]: str(x[key])})
 
@@ -1285,7 +1285,7 @@ class ProvenanceType(GenericPE):
         self.stateDerivations=terms
 
     def checkSelectiveRule(self,streammeta):
-        self.log("Checking Skip-Rules: "+str(self.sel_rules))
+        self.log("Checking Selectivity-Rules: "+str(self.sel_rules))
         rules=self.sel_rules["rules"]
 
         for key in rules:
@@ -1294,21 +1294,21 @@ class ProvenanceType(GenericPE):
                     if key in s: 
                         #self.log("A"+str(self.sel_rules[key]))
                         self.log(s[key]) 
-                        self.log(type(s[key]))
+                        #self.log(type(s[key]))
                          
                         if '$eq' in rules[key] and s[key]==rules[key]['$eq']:
                             return True
                         elif '$gt' in rules[key] and '$lt' in rules[key]:
                             if (s[key]>rules[key]['$gt'] and s[key]<rules[key]['$lt']):
-                                self.log("GT-LT") 
+                                #self.log("GT-LT") 
                                 return True
                             else:
                                 return False
                         elif '$gt' in rules[key] and s[key]>rules[key]['$gt']:
-                            self.log("GT") 
+                            #self.log("GT") 
                             return True
                         elif '$lt' in rules[key] and s[key]<rules[key]['$lt']:
-                            self.log("LT") 
+                            #self.log("LT") 
                             return True
                         else:
                             return False
@@ -1367,7 +1367,7 @@ class ProvenanceType(GenericPE):
             except:
                 traceback.print_exc(file=sys.stderr)
                 None
-        
+        #self.log(self.sel_rules)
         if self.sel_rules!=None:
             self.provon=self.checkSelectiveRule(streammeta)
 
