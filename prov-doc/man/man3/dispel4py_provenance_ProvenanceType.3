@@ -1,0 +1,318 @@
+.TH "dispel4py.provenance.ProvenanceType" 3 "Thu Nov 8 2018" "provenance-d4py" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+dispel4py.provenance.ProvenanceType
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBdispel4py\&.core\&.GenericPE\fP\&.
+.PP
+Inherited by \fBdispel4py\&.provenance\&.AccumulateFlow\fP, \fBdispel4py\&.provenance\&.AccumulateStateTrace\fP, \fBdispel4py\&.provenance\&.ASTGrouped\fP, \fBdispel4py\&.provenance\&.ForceStateless\fP, \fBdispel4py\&.provenance\&.IntermediateStatefulOut\fP, \fBdispel4py\&.provenance\&.Nby1Flow\fP, \fBdispel4py\&.provenance\&.NewWorkflowRun\fP, \fBdispel4py\&.provenance\&.ProvenanceIterativePE\fP, \fBdispel4py\&.provenance\&.ProvenanceSimpleFunctionPE\fP, \fBdispel4py\&.provenance\&.SingleInvocationFlow\fP, and \fBdispel4py\&.provenance\&.SlideFlow\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBgetProvStateObjectId\fP (self, name)"
+.br
+.ti -1c
+.RI "def \fBmakeProcessId\fP (self, kwargs)"
+.br
+.ti -1c
+.RI "def \fBmakeUniqueId\fP (self, data, port)"
+.br
+.ti -1c
+.RI "def \fBgetUniqueId\fP (self, data, port, kwargs)"
+.br
+.ti -1c
+.RI "def \fBapply_derivation_rule\fP (self, event, voidInvocation, oport=None, iport=None, data=None, metadata=None)"
+.br
+.ti -1c
+.RI "def \fBpe_init\fP (self, args, kwargs)"
+.br
+.ti -1c
+.RI "def \fB__init__\fP (self)"
+.br
+.ti -1c
+.RI "def \fBgetDataStreams\fP (self, inputs)"
+.br
+.ti -1c
+.RI "def \fBgetInputAt\fP (self, port='input', index=None)"
+.br
+.ti -1c
+.RI "def \fBprocess_feedback\fP (self, feedback)"
+.br
+.ti -1c
+.RI "def \fBprocess\fP (self, inputs)"
+.br
+.ti -1c
+.RI "def \fBaddNamespacePrefix\fP (self, prefix, url)"
+.br
+.ti -1c
+.RI "def \fBextractItemMetadata\fP (self, data, port)"
+.br
+.ti -1c
+.RI "def \fBpreprocess\fP (self)"
+.br
+.ti -1c
+.RI "def \fBpostprocess\fP (self)"
+.br
+.ti -1c
+.RI "def \fBsendProvToSensor\fP (self, prov)"
+.br
+.ti -1c
+.RI "def \fBsendProvToService\fP (self, prov)"
+.br
+.ti -1c
+.RI "def \fBwriteProvToFile\fP (self, prov)"
+.br
+.ti -1c
+.RI "def \fBflushData\fP (self, data, metadata, port, kwargs)"
+.br
+.ti -1c
+.RI "def \fBinitParameters\fP (self)"
+.br
+.ti -1c
+.RI "def \fBimportInputData\fP (self, data)"
+.br
+.ti -1c
+.RI "def \fBwriteResults\fP (self, name, result)"
+.br
+.ti -1c
+.RI "def \fBprepareOutputStream\fP (self, data, trace, port, kwargs)"
+.br
+.ti -1c
+.RI "def \fBignorePastFlow\fP (self)"
+.br
+.ti -1c
+.RI "def \fBignoreState\fP (self)"
+.br
+.ti -1c
+.RI "def \fBpackageAll\fP (self, contentmeta)"
+.br
+.ti -1c
+.RI "def \fBdiscardState\fP (self)"
+.br
+.ti -1c
+.RI "def \fBdiscardInFlow\fP (self, wlength=None, discardState=False)"
+.br
+.ti -1c
+.RI "def \fBupdate_prov_state\fP (self, lookupterm, data, location='', format='', metadata={}, ignore_inputs=False, ignore_state=True, stateless=False, kwargs)"
+.br
+.ti -1c
+.RI "def \fBextractProvenance\fP (self, data, location='', format='', metadata={}, control={}, attributes={}, error='', output_port='', kwargs)"
+.br
+.ti -1c
+.RI "def \fBwrite\fP (self, name, data, kwargs)"
+.br
+.ti -1c
+.RI "def \fBsetStateDerivations\fP (self, terms)"
+.br
+.ti -1c
+.RI "def \fBcheckSelectiveRule\fP (self, streammeta)"
+.br
+.ti -1c
+.RI "def \fBcheckTransferRule\fP (self, streammeta)"
+.br
+.ti -1c
+.RI "def \fBbuildUserMetadata\fP (self, data, kwargs)"
+.br
+.ti -1c
+.RI "def \fBremoveDerivation\fP (self, kwargs)"
+.br
+.ti -1c
+.RI "def \fBextractDataSourceId\fP (self, data, port)"
+.br
+.ti -1c
+.RI "def \fBbuildDerivation\fP (self, data, port='')"
+.br
+.ti -1c
+.RI "def \fBdicToKeyVal\fP (self, dict, valueToString=False)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstateCollection\fP"
+.br
+.ti -1c
+.RI "\fBstateCollectionId\fP"
+.br
+.ti -1c
+.RI "\fBimpcls\fP"
+.br
+.ti -1c
+.RI "\fBbulk_prov\fP"
+.br
+.ti -1c
+.RI "\fBstateful\fP"
+.br
+.ti -1c
+.RI "\fBstateDerivations\fP"
+.br
+.ti -1c
+.RI "\fBsel_rules\fP"
+.br
+.ti -1c
+.RI "\fBtransfer_rules\fP"
+.br
+.ti -1c
+.RI "\fBcreator\fP"
+.br
+.ti -1c
+.RI "\fBerror\fP"
+.br
+.ti -1c
+.RI "\fBparameters\fP"
+.br
+.ti -1c
+.RI "\fBcontrolParameters\fP"
+.br
+.ti -1c
+.RI "\fBtaskId\fP"
+.br
+.RI "self\&.outputconnections[OUTPUT_METADATA] = out_md "
+.ti -1c
+.RI "\fBprovon\fP"
+.br
+.ti -1c
+.RI "\fBsave_mode\fP"
+.br
+.ti -1c
+.RI "\fBwcount\fP"
+.br
+.ti -1c
+.RI "\fBresetflow\fP"
+.br
+.ti -1c
+.RI "\fBstateUpdateIndex\fP"
+.br
+.ti -1c
+.RI "\fBignore_inputs\fP"
+.br
+.ti -1c
+.RI "\fBignore_state\fP"
+.br
+.ti -1c
+.RI "\fBignore_past_flow\fP"
+.br
+.ti -1c
+.RI "\fBderivationIds\fP"
+.br
+.ti -1c
+.RI "\fBiterationIndex\fP"
+.br
+.ti -1c
+.RI "\fBcountstatewrite\fP"
+.br
+.ti -1c
+.RI "\fBbehalfOf\fP"
+.br
+.ti -1c
+.RI "\fBprov_cluster\fP"
+.br
+.ti -1c
+.RI "\fBns\fP"
+.br
+.ti -1c
+.RI "\fBinstanceId\fP"
+.br
+.ti -1c
+.RI "\fBfeedbackIteration\fP"
+.br
+.ti -1c
+.RI "\fBvoid_invocation\fP"
+.br
+.ti -1c
+.RI "\fBprovurl\fP"
+.br
+.ti -1c
+.RI "\fBconnection\fP"
+.br
+.ti -1c
+.RI "\fBendTime\fP"
+.br
+.ti -1c
+.RI "\fBinputs\fP"
+.br
+.ti -1c
+.RI "\fBw3c_prov\fP"
+.br
+.ti -1c
+.RI "\fBinMetaStreams\fP"
+.br
+.ti -1c
+.RI "\fBusername\fP"
+.br
+.ti -1c
+.RI "\fBrunId\fP"
+.br
+.ti -1c
+.RI "\fBoutputdest\fP"
+.br
+.ti -1c
+.RI "\fBrootpath\fP"
+.br
+.ti -1c
+.RI "\fBoutputid\fP"
+.br
+.ti -1c
+.RI "\fBoutput\fP"
+.br
+.ti -1c
+.RI "\fBstartTime\fP"
+.br
+.ti -1c
+.RI "\fBiterationId\fP"
+.br
+.ti -1c
+.RI "\fBaddprov\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBPROV_PATH\fP = '\&./'"
+.br
+.ti -1c
+.RI "string \fBREPOS_URL\fP = ''"
+.br
+.ti -1c
+.RI "string \fBPROV_EXPORT_URL\fP = ''"
+.br
+.ti -1c
+.RI "string \fBSAVE_MODE_SERVICE\fP = 'service'"
+.br
+.ti -1c
+.RI "string \fBSAVE_MODE_FILE\fP = 'file'"
+.br
+.ti -1c
+.RI "string \fBSAVE_MODE_SENSOR\fP = 'sensor'"
+.br
+.ti -1c
+.RI "int \fBBULK_SIZE\fP = 1"
+.br
+.ti -1c
+.RI "bool \fBsend_prov_to_sensor\fP = False"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "def dispel4py\&.provenance\&.ProvenanceType\&.getProvStateObjectId ( self,  name)"
+
+.PP
+.nf
+Documentation for a function.
+
+More details.
+
+.fi
+.PP
+ 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for provenance-d4py from the source code\&.
