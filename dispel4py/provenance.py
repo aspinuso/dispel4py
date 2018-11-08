@@ -48,6 +48,12 @@ INPUT_NAME = 'input'
 OUTPUT_DATA = 'output'
 OUTPUT_METADATA = 'provenance'
 
+"""@package docstring
+Documentation for the dispe4pt provenance module.
+
+More details.
+"""
+
 
 # def write(self, name, data, **kwargs):
 #    self._write(name, data)
@@ -370,6 +376,7 @@ def num(s):
 _d4p_plan_sqn = 0
 
 
+
 class ProvenanceType(GenericPE):
 
     PROV_PATH="./"
@@ -385,7 +392,13 @@ class ProvenanceType(GenericPE):
 
     send_prov_to_sensor=False
 
+
+
     def getProvStateObjectId(self,name):
+        """Documentation for a function.
+
+        More details.
+        """
         if name in self.stateCollection:
             return self.stateCollection[name]
         else:
