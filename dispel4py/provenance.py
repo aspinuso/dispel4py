@@ -1813,6 +1813,32 @@ provclusters = {}
 
 prov_save_mode={}
 
+#d4py_newrun=None
+
+
+
+def update_prov_run(runId,save_mode='file',dic=None):
+    d4py_udpaterun = UpdateWorkflowRun(save_mode)
+    if dic!=None:
+        d4py_udpaterun.parameters = dic
+        d4py_udpaterun.parameters.update({'runId':runId})
+    #newrun.parameters=clean_empty(newrun.parameters)
+    _graph = WorkflowGraph()
+    provrec = None
+
+    #if provRecorderClass!=None:
+    #    provrec = provRecorderClass(toW3C=w3c_prov)
+    #    _graph.connect(d4py_newrun, "output", provrec, "metadata")
+    #else:
+    provrec = IterativePE()
+    _graph.connect(d4py_udpaterun, "output", provrec, "input")
+    print(d4py_udpaterun.parameters)
+
+    # attachProvenanceRecorderPE(_graph,provRecorderClass,runId,username,w3c_prov)
+
+    # newrun.provon=True
+    simple_process.process(_graph, {'UpdateWorkflowRun': [{'input': 'None'}]})
+
 
 ' This methods enriches the graph to enable the production and recording '
 ' of run-specific provenance information '
@@ -1852,9 +1878,9 @@ def configure_prov_run(
     
     workflow=injectProv(graph, provImpClass, componentsType=componentsType,save_mode=save_mode,controlParameters={'username':username,'runId':runId},sel_rules=sel_rules,transfer_rules=transfer_rules)
     
-    newrun = NewWorkflowRun(save_mode)
+    d4py_newrun = NewWorkflowRun(save_mode)
 
-    newrun.parameters = {"input": input,
+    d4py_newrun.parameters = {"input": input,
                          "username": username,
                          "workflowId": workflowId,
                          "description": description,
@@ -1867,7 +1893,8 @@ def configure_prov_run(
                          "source":workflow,
                          "ns":namespaces,
                          "workflowType":workflowType,
-                         "update":update
+                         "update":update,
+                         "status":"active"
                          }
     #newrun.parameters=clean_empty(newrun.parameters)
     _graph = WorkflowGraph()
@@ -1875,10 +1902,10 @@ def configure_prov_run(
 
     if provRecorderClass!=None:
         provrec = provRecorderClass(toW3C=w3c_prov)
-        _graph.connect(newrun, "output", provrec, "metadata")
+        _graph.connect(d4py_newrun, "output", provrec, "metadata")
     else:
         provrec = IterativePE()
-        _graph.connect(newrun, "output", provrec, "input")
+        _graph.connect(d4py_newrun, "output", provrec, "input")
 
 
     # attachProvenanceRecorderPE(_graph,provRecorderClass,runId,username,w3c_prov)
@@ -2056,7 +2083,8 @@ class NewWorkflowRun(ProvenanceType):
             modules=None,
             subProcesses=None,
             ns=None,
-            update=False):
+            update=False,
+            status=None):
 
         bundle = {}
         if not update and (username is None or workflowId is None or workflowName is None):
@@ -2081,6 +2109,7 @@ class NewWorkflowRun(ProvenanceType):
             bundle["prov:type"] = workflowType
             bundle["source"] = subProcesses
             bundle["ns"] = ns
+            bundle["status"] = status
             bundle=clean_empty(bundle)
              
 
@@ -2100,11 +2129,38 @@ class NewWorkflowRun(ProvenanceType):
             runId=self.parameters["runId"],
             modules=sorted(["%s==%s" % (i.key, i.version) for i in get_installed_distributions()]),
             subProcesses=self.parameters["source"],
-            ns=self.parameters["ns"])
+            ns=self.parameters["ns"],
+            status=self.parameters["status"],
+            )
             
         self.log("STORING WORKFLOW RUN METADATA")
 
         self.write('output', bundle, metadata=bundle)
+
+
+
+class UpdateWorkflowRun(ProvenanceType):
+
+    def __init__(self,save_mode):
+        ProvenanceType.__init__(self)
+        self.pe_init(pe_class=ProvenanceType,save_mode=save_mode)
+        self._add_output('output')
+
+
+    def packageAll(self, contentmeta):
+
+        return {'metadata':contentmeta[0]['content'][0]}
+
+    
+
+    def _process(self, inputs):
+        self.name = 'UpdateWorkflowRun'
+        self.log(self.parameters)
+        self.parameters.update({'type':'workflow_run'})
+        self.log(self.parameters)
+        self.log("UPDATING WORKFLOW RUN METADATA"+str(self.parameters))
+
+        self.write('output', self.parameters, metadata=self.parameters)
 
 
 class PassThroughPE(IterativePE):
