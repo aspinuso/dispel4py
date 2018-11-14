@@ -1832,7 +1832,7 @@ def update_prov_run(runId,save_mode='file',dic=None):
     #else:
     provrec = IterativePE()
     _graph.connect(d4py_udpaterun, "output", provrec, "input")
-    print(d4py_udpaterun.parameters)
+     
 
     # attachProvenanceRecorderPE(_graph,provRecorderClass,runId,username,w3c_prov)
 
