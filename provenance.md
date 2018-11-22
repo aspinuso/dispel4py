@@ -50,7 +50,7 @@ getUniqueId(data=None)
 ```
 Utility function to generate a unique id to be assigned to the provenance entities. As default it uses a combination
 of hostname process id and the result of the uuid.uuid1() method.
-When data is passed the object id is used in place of the uuid.uuid1()
+@param: data The data object's id is used in place of the uuid.uuid1()
 
 ## num
 ```python
