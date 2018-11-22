@@ -1,7 +1,3 @@
-# dispel4py
-
-The core packages for Dispel4Py.
-
 # dispel4py.provenance
 
 ## clean_empty
@@ -67,7 +63,7 @@ If the parameter is a string representing a number it will be returned as float 
 ```python
 ProvenanceType(self)
 ```
-The type-based approach to provenance collection provides a generic ProvenanceType
+The type-based approach to provenance collection provides a generic ProvenanceType class
 that defines the properties of a provenance-aware workflow component. It provides
 a wrapper that meets the provenance requirements, while leaving the computational
 behaviour of the component unchanged. Types may be developed as PatternType and ContextualType to represent respectively complex
