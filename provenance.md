@@ -1,4 +1,4 @@
-# provenance_doc
+# dispel4py.provenance
 
 ## clean_empty
 ```python
@@ -292,7 +292,7 @@ Print methods and doc strings.
 Takes module, class, list, dictionary, or string.
 ## configure_prov_run
 ```python
-configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'provenance_doc.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
+configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'dispel4py.provenance_doc.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
 ```
 With this method, the users of the workflow provide general provenance information on the attribution of the run, such as _username_, _runId_ (execution id),
 _description_, _workflowName_, and its semantic characterisation _workflowType_. It allows users to indicate which provenance types to apply to each component
