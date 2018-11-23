@@ -49,14 +49,14 @@ The queue parameter is used to store the stdoutdata, stderrdata of each process 
 getUniqueId(data=None)
 ```
 Utility function to generate a unique id to be assigned to the provenance entities. As default it uses a combination
-of hostname process id and the result of the uuid.uuid1() method. Wit the _data_ parameter, the passed object's _id is used in place of the uuid.uuid1()
+of hostname process _id_ and the result of the _uuid.uuid1()_ method. Wit the _data_ parameter, the passed object's _id_ is used in place of the uuid.uuid1()
 
 
 ## num
 ```python
 num(s)
 ```
-Utility function that checks the type of the object passed as *s parameter.
+Utility function that checks the type of the object passed as _s_ parameter.
 If the parameter is a string representing a number it will be returned as float or int
 
 ## ProvenanceType
@@ -68,6 +68,21 @@ that defines the properties of a provenance-aware workflow component. It provide
 a wrapper that meets the provenance requirements, while leaving the computational
 behaviour of the component unchanged. Types may be developed as PatternType and ContextualType to represent respectively complex
 computational patterns and to capture specific metadata contextualisations associated to the produce output data.
+
+The _ProvenanceType_ presents the following class constants to indicate where the lineage information will be stored. Options include a remote
+repository, a local file system or a _ProvenanceSensor_ (experimental).
+
+_SAVE_MODE_SERVICE='service'_
+_SAVE_MODE_FILE='file'_
+_SAVE_MODE_SENSOR='sensor'_
+
+The following variables will be used to configure some general provenance capturing properties
+
+_PROV_PATH_: When _SAVE_MODE_SERVICE_ is chosen, this variable should be populated with a string indcating a file system path wher the lineage will be stored
+_REPOS_URL_: When _SAVE_MODE_SERVICE_ is chosen, this variable should be populated with a string indcating the repository endpoint (S-ProvFlow) where the provenance will be sent.
+_PROV_DATA_EXPORT_URL: The service endpoint from where the provenance of a workflow execution, after being stored, can be extracted in PROV format.
+_BULK_SIZE_: Number of lineage documents to be stored in a single file or in a single request to the remote service. Helps tuning the overhead brough by the latency of accessing storage resources.
+
 
 ### BULK_SIZE
 int(x=0) -> int or long
