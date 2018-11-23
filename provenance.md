@@ -78,10 +78,10 @@ repository, a local file system or a _ProvenanceSensor_ (experimental).
 
 The following variables will be used to configure some general provenance capturing properties
 
-_PROV_PATH_: When _SAVE_MODE_SERVICE_ is chosen, this variable should be populated with a string indcating a file system path wher the lineage will be stored
-_REPOS_URL_: When _SAVE_MODE_SERVICE_ is chosen, this variable should be populated with a string indcating the repository endpoint (S-ProvFlow) where the provenance will be sent.
-_PROV_DATA_EXPORT_URL: The service endpoint from where the provenance of a workflow execution, after being stored, can be extracted in PROV format.
-_BULK_SIZE_: Number of lineage documents to be stored in a single file or in a single request to the remote service. Helps tuning the overhead brough by the latency of accessing storage resources.
+- _PROV_PATH_: When _SAVE_MODE_SERVICE_ is chosen, this variable should be populated with a string indcating a file system path wher the lineage will be stored
+- _REPOS_URL_: When _SAVE_MODE_SERVICE_ is chosen, this variable should be populated with a string indcating the repository endpoint (S-ProvFlow) where the provenance will be sent.
+- _PROV_DATA_EXPORT_URL: The service endpoint from where the provenance of a workflow execution, after being stored, can be extracted in PROV format.
+- _BULK_SIZE_: Number of lineage documents to be stored in a single file or in a single request to the remote service. Helps tuning the overhead brough by the latency of accessing storage resources.
 
 
 ### BULK_SIZE
@@ -139,8 +139,29 @@ The class bool is a subclass of the class int, and cannot be subclassed.
 ```python
 ProvenanceType.getProvStateObjectId(self, name)
 ```
-Documentation for a function.
-More details.
+Check if a data object with lookupterm _name_, is part of the provenance state (_s-prov:StateCollection_) and returns its _id_.
+
+### makeProcessId
+```python
+ProvenanceType.makeProcessId(self)
+```
+Return the _id_ to be attributed to an running instance (_s-prov:ComponentInstance_) of a processing element.
+
+### makeUniqueId
+```python
+ProvenanceType.makeUniqueId(self, data)
+```
+Return the _id_ to be attributed to a data entity (_s-prov:Data_) produced in output.
+
+### apply_derivation_rule
+```python
+ProvenanceType.apply_derivation_rule(self, event, voidInvocation, oport=None, iport=None, data=None, metadata=None)
+```
+In support of the implementation of a _ProvenanceType_ realising a lineage __Pattern type__. This method is invoked by the _ProvenanceType_ each iteration when a decision has to be made whether to ignore or discard the dependencies on the ingested stream
+and stateful entities, applying a specific provenance pattern, thereby creating input/output derivations. The framework invokes this method every time the data is written on an output port (_event_: _write_) and every
+time an invocation (_s-prov:Invocation_) ends (_event_: _end_invocation_event_). The latter can be further described by indicating whether the invocation terminated with any data produced: _voidInvocation_: bool.
+Default implementation provides a _stateless_ behaviour, where the output depends only from the input data recieved during the invocation.
+
 
 ## get_source
 ```python
