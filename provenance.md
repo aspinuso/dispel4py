@@ -361,9 +361,9 @@ Example:
 ```python
     { "CorrCoef": {
         "rules": {
-    "rho": {
-"$gt": 0
-}}}}
+            "rho": {
+                "$gt": 0
+    }}}}
 ```
 
 
