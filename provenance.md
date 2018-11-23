@@ -4,7 +4,7 @@
 ```python
 clean_empty(d)
 ```
-Given a dictionary in input, removes all the properties that are set to None.
+Utility function that given a dictionary in input, removes all the properties that are set to None.
 It workes recursevly through lists and nested documents
 
 
@@ -63,10 +63,31 @@ If the parameter is a string representing a number it will be returned as float 
 ```python
 ProvenanceType(self)
 ```
-The type-based approach to provenance collection provides a generic ProvenanceType class
+
+A workflow is a program that combines atomic and independent processing elements
+via a specification language and a library of components. More advanced systems
+adopt abstractions to facilitate re-use of workflows across users' contexts and application
+domains. While methods can be multi-disciplinary, provenance
+should be meaningful to the domain adopting them. Therefore, a portable specification
+of a workflow requires mechanisms allowing the contextualisation of the provenance
+produced. For instance, users may want to extract domain-metadata from a component
+or groups of components adopting vocabularies that match their domain and current
+research, tuning the level of granularity. To allow this level of flexibility, we explore
+an approach that considers a workflow component described by a class, according to
+the Object-Oriented paradigm. The class defines the behaviour of its instances as their
+type, which specifies what an instance will do in terms of a set of methods. We introduce
+the concept of _ProvenanceType_, that augments the basic behaviour by extending
+the class native type, so that a subset of those methods perform the additional actions
+needed to deliver provenance data. Some of these are being used by some of the preexisting
+methods, and characterise the behaviour of the specific provenance type, some
+others can be used by the developer to easily control precision and granularity. This approach,
+tries to balance between automation, transparency and explicit intervention of the developer of a data-intensive tool, who
+can tune provenance-awareness through easy-to-use extensions.
+
+The type-based approach to provenance collection provides a generic _ProvenanceType_ class
 that defines the properties of a provenance-aware workflow component. It provides
 a wrapper that meets the provenance requirements, while leaving the computational
-behaviour of the component unchanged. Types may be developed as PatternType and ContextualType to represent respectively complex
+behaviour of the component unchanged. Types may be developed as __Pattern Type__ and __Contextual Type__ to represent respectively complex
 computational patterns and to capture specific metadata contextualisations associated to the produce output data.
 
 The _ProvenanceType_ presents the following class constants to indicate where the lineage information will be stored. Options include a remote
@@ -294,6 +315,22 @@ Takes module, class, list, dictionary, or string.
 ```python
 configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'dispel4py.provenance_doc.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
 ```
+In order to enable the user of a data-intensive application to configure the attribution
+of types, selectivity controls and activation of advanced exploitation mechanisms, we
+introduce in this chapter also the concept of provenance configuration.
+With the configuration users can specify a number of properties, such as attribution,
+provenance types, clusters, sensors, selectivity rules, etc. The configuration is
+used at the time of the initialisation of the workflow to prepare its provenance-aware
+execution. We consider that a chosen configuration may be influenced by personal and
+community preferences, as well as by rules introduced by institutional policies. For
+instance, a Research Infrastructure (RI) may indicate best practices to reproduce and
+describe the operations performed by the users exploiting its facilities, or even impose
+requirements which may turn into quality assessment metrics.
+For instance, a certain RI would require to choose among a set of contextualisation types, in order to adhere to
+the infrastructure's metadata portfolio. Thus, a provenance configuration profile play
+in favour of more generality, encouraging the implementation and the re-use of fundamental
+methods across disciplines.
+
 With this method, the users of the workflow provide general provenance information on the attribution of the run, such as _username_, _runId_ (execution id),
 _description_, _workflowName_, and its semantic characterisation _workflowType_. It allows users to indicate which provenance types to apply to each component
 and the belonging conceptual provenance cluster. Moreover, users can also choose where to store the lineage (_save_mode_), locally in the file system or in a remote service or database.
