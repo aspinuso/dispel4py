@@ -84,57 +84,6 @@ The following variables will be used to configure some general provenance captur
 - _BULK_SIZE_: Number of lineage documents to be stored in a single file or in a single request to the remote service. Helps tuning the overhead brough by the latency of accessing storage resources.
 
 
-### BULK_SIZE
-int(x=0) -> int or long
-int(x, base=10) -> int or long
-
-Convert a number or string to an integer, or return 0 if no arguments
-are given.  If x is floating point, the conversion truncates towards zero.
-If x is outside the integer range, the function returns a long instead.
-
-If x is not a number or if base is given, then x must be a string or
-Unicode object representing an integer literal in the given base.  The
-literal can be preceded by '+' or '-' and be surrounded by whitespace.
-The base defaults to 10.  Valid bases are 0 and 2-36.  Base 0 means to
-interpret the base from the string as an integer literal.
->>> int('0b100', base=0)
-4
-### PROV_EXPORT_URL
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### PROV_PATH
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### REPOS_URL
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### SAVE_MODE_FILE
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### SAVE_MODE_SENSOR
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### SAVE_MODE_SERVICE
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### send_prov_to_sensor
-bool(x) -> bool
-
-Returns True when the argument x is true, False otherwise.
-The builtins True and False are the only two instances of the class bool.
-The class bool is a subclass of the class int, and cannot be subclassed.
 ### getProvStateObjectId
 ```python
 ProvenanceType.getProvStateObjectId(self, name)
@@ -368,18 +317,3 @@ Example:
 
 
 
-## ProvenanceRecorder
-```python
-ProvenanceRecorder(self, name='ProvenanceRecorder', toW3C=False)
-```
-
-### INPUT_NAME
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
-### REPOS_URL
-str(object='') -> string
-
-Return a nice string representation of the object.
-If the argument is a string, the return value is the same object.
