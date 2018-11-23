@@ -283,13 +283,6 @@ A _Pattern type_ for a Processing Element (_s-prov:Component_). It considers the
 only on the current input data, regardless from any explicit state update; e.g. the user wants to reduce the
 amount of lineage produced by a component that presents inline calls to the _update_prov_state_, accepting less accuracy.
 
-## get_source
-```python
-get_source(object, spacing=10, collapse=1)
-```
-Print methods and doc strings.
-
-Takes module, class, list, dictionary, or string.
 ## configure_prov_run
 ```python
 configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'dispel4py.provenance.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
