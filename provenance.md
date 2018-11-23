@@ -315,7 +315,7 @@ Takes module, class, list, dictionary, or string.
 ```python
 configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'dispel4py.provenance_doc.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
 ```
-In order to enable the user of a data-intensive application to configure the attribution
+To enable the user of a data-intensive application to configure the attribution
 of types, selectivity controls and activation of advanced exploitation mechanisms, we
 introduce in this chapter also the concept of provenance configuration.
 With the configuration users can specify a number of properties, such as attribution,
