@@ -49,7 +49,7 @@ The queue parameter is used to store the stdoutdata, stderrdata of each process 
 getUniqueId(data=None)
 ```
 Utility function to generate a unique id to be assigned to the provenance entities. As default it uses a combination
-of hostname process id and the result of the uuid.uuid1() method. Wit the *data parameter, the passed object's *id is used in place of the uuid.uuid1()
+of hostname process id and the result of the uuid.uuid1() method. Wit the _data_ parameter, the passed object's _id is used in place of the uuid.uuid1()
 
 
 ## num
