@@ -294,7 +294,7 @@ Lineage storage operations can be performed in bulk, with different impacts on t
 
 
 
-- __Selectivity and Transfer rules__: By declaratively indicating a set of Selectivity and Transfer rules for every component, users can respectively activate the collection
+- __Selectivity and Transfer rules__: By declaratively indicating a set of Selectivity and Transfer rules for every component (_sel_rules_, _transfer_rules_), users can respectively activate the collection
 of the provenance for particular Data elements or trigger transfer operations of the data to external locations. The approach takes advantage of the contextualisation
 possibilities offered by the provenance _Contextualisation types_. The rules consist of comparison expressions formulated in JSON that indicate the boundary
 values for a specific metadata term. Such representation is inspired by the query language and selectors adopted by a popular document store, MongoDB.
