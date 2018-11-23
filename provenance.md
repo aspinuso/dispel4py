@@ -1,4 +1,4 @@
-# dispel4py.provenance
+# provenance_doc
 
 ## clean_empty
 ```python
@@ -98,7 +98,7 @@ Return the _id_ to be attributed to an running instance (_s-prov:ComponentInstan
 
 ### makeUniqueId
 ```python
-ProvenanceType.makeUniqueId(self, data)
+ProvenanceType.makeUniqueId(self, data, output_port)
 ```
 In support of the implementation of a _ProvenanceType_ realising a lineage __Contextualisation type__.
 Return the _id_ to be attributed to a data entity (_s-prov:Data_) produced in output.
@@ -283,9 +283,16 @@ A _Pattern type_ for a Processing Element (_s-prov:Component_). It considers the
 only on the current input data, regardless from any explicit state update; e.g. the user wants to reduce the
 amount of lineage produced by a component that presents inline calls to the _update_prov_state_, accepting less accuracy.
 
+## get_source
+```python
+get_source(object, spacing=10, collapse=1)
+```
+Print methods and doc strings.
+
+Takes module, class, list, dictionary, or string.
 ## configure_prov_run
 ```python
-configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'dispel4py.provenance.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
+configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'provenance_doc.ProvenanceType'>, input=None, username=None, workflowId=None, description=None, system_id=None, workflowName=None, workflowType=None, w3c_prov=False, runId=None, componentsType=None, clustersRecorders={}, feedbackPEs=[], save_mode='file', sel_rules={}, transfer_rules={}, update=False)
 ```
 With this method, the users of the workflow provide general provenance information on the attribution of the run, such as _username_, _runId_ (execution id),
 _description_, _workflowName_, and its semantic characterisation _workflowType_. It allows users to indicate which provenance types to apply to each component
@@ -299,7 +306,7 @@ of the provenance for particular Data elements or trigger transfer operations of
 possibilities offered by the provenance _Contextualisation types_. The rules consist of comparison expressions formulated in JSON that indicate the boundary
 values for a specific metadata term. Such representation is inspired by the query language and selectors adopted by a popular document store, MongoDB.
 
-Example:
+Example, a Processing Element _CorrCoef_ that produces lineage information only when the _rho_ value is greater than 0:
 ```python
     { "CorrCoef": {
         "rules": {
@@ -307,6 +314,5 @@ Example:
                 "$gt": 0
     }}}}
 ```
-
 
 
