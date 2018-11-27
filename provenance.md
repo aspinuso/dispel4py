@@ -1,63 +1,4 @@
-# dispel4py.provenance
-
-## clean_empty
-```python
-clean_empty(d)
-```
-Utility function that given a dictionary in input, removes all the properties that are set to None.
-It workes recursevly through lists and nested documents
-
-
-## total_size
-```python
-total_size(o, handlers={}, verbose=False)
-```
-Returns the approximate memory footprint an object and all of its contents.
-
-Automatically finds the contents of the following builtin containers and
-their subclasses:  tuple, list, deque, dict, set and frozenset.
-To search other containers, add handlers to iterate over their contents:
-
-    handlers = {SomeContainerClass: iter,
-                OtherContainerClass: OtherContainerClass.get_elements}
-
-
-## write
-```python
-write(self, name, data)
-```
-Redefines the native write function of the dispel4py SimpleFunctionPE to take into account
-provenance payload when transfering data.
-
-## getDestination_prov
-```python
-getDestination_prov(self, data)
-```
-When provenance is activated it redefines the native dispel4py.new.process getDestination function to take into account provenance information
-when redirecting grouped operations.
-
-## commandChain
-```python
-commandChain(commands, env, queue=None)
-```
-Utility function to execute a chain of system commands on the hosting oeprating system.
-The current environment variable can be passed as parameter env.
-The queue parameter is used to store the stdoutdata, stderrdata of each process in message
-
-## getUniqueId
-```python
-getUniqueId(data=None)
-```
-Utility function to generate a unique id to be assigned to the provenance entities. As default it uses a combination
-of hostname process _id_ and the result of the _uuid.uuid1()_ method. Wit the _data_ parameter, the passed object's _id_ is used in place of the uuid.uuid1()
-
-
-## num
-```python
-num(s)
-```
-Utility function that checks the type of the object passed as _s_ parameter.
-If the parameter is a string representing a number it will be returned as float or int
+# dispel4py
 
 ## ProvenanceType
 ```python
@@ -317,8 +258,7 @@ configure_prov_run(graph, provRecorderClass=None, provImpClass=<class 'dispel4py
 ```
 To enable the user of a data-intensive application to configure the attribution
 of types, selectivity controls and activation of advanced exploitation mechanisms, we
-introduce in this chapter also the concept of provenance configuration.
-With the configuration users can specify a number of properties, such as attribution,
+introduce the concept of provenance configuration. With the configuration users can specify a number of properties, such as attribution,
 provenance types, clusters, sensors, selectivity rules, etc. The configuration is
 used at the time of the initialisation of the workflow to prepare its provenance-aware
 execution. We consider that a chosen configuration may be influenced by personal and
@@ -326,7 +266,7 @@ community preferences, as well as by rules introduced by institutional policies.
 instance, a Research Infrastructure (RI) may indicate best practices to reproduce and
 describe the operations performed by the users exploiting its facilities, or even impose
 requirements which may turn into quality assessment metrics.
-For instance, a certain RI would require to choose among a set of contextualisation types, in order to adhere to
+This could require to choose among a set of contextualisation types, in order to adhere to
 the infrastructure's metadata portfolio. Thus, a provenance configuration profile play
 in favour of more generality, encouraging the implementation and the re-use of fundamental
 methods across disciplines.
