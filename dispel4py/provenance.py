@@ -25,10 +25,10 @@ import traceback
 import os
 import socket
 import ujson
-import httplib
+import http as httplib
 import urllib
 import pickle
-from urlparse import urlparse
+from urllib.parse import urlparse
 from pip._internal.utils.misc import get_installed_distributions
 from dispel4py.new import simple_process
 from subprocess import Popen, PIPE
@@ -616,11 +616,11 @@ class ProvenanceType(GenericPE):
             
             if self.save_mode==ProvenanceType.SAVE_MODE_SERVICE:
                 #self.log("TO SERVICE ________________ID: "+str(self.provurl.netloc))
-                params = urllib.urlencode({'prov': ujson.dumps(self.bulk_prov)})
+                params = urllib.parse.urlencode({'prov': ujson.dumps(self.bulk_prov)})
                 headers = {
                        "Content-type": "application/x-www-form-urlencoded",
                        "Accept": "application/json"}
-                self.connection = httplib.HTTPConnection(
+                self.connection = httplib.client.HTTPConnection(
                                                      self.provurl.netloc)
                 self.connection.request(
                                     "POST",
@@ -677,11 +677,11 @@ class ProvenanceType(GenericPE):
         
         if len(self.bulk_prov) > ProvenanceType.BULK_SIZE:
             #self.log("TO SERVICE ________________ID: "+str(self.bulk_prov))
-            params = urllib.urlencode({'prov': ujson.dumps(self.bulk_prov)})
+            params = urllib.parse.urlencode({'prov': ujson.dumps(self.bulk_prov)})
             headers = {
                 "Content-type": "application/x-www-form-urlencoded",
                 "Accept": "application/json"}
-            self.connection = httplib.HTTPConnection(
+            self.connection = httplib.client.HTTPConnection(
                                                      self.provurl.netloc)
             self.connection.request(
                 "POST", self.provurl.path, params, headers)
@@ -2221,7 +2221,7 @@ class ProvenanceRecorderToService(ProvenanceRecorder):
 
     def _preprocess(self):
         self.provurl = urlparse(ProvenanceRecorder.REPOS_URL)
-        self.connection = httplib.HTTPConnection(
+        self.connection = httplib.client.HTTPConnection(
             self.provurl.netloc)
 
     def _process(self, inputs):
@@ -2239,7 +2239,7 @@ class ProvenanceRecorderToService(ProvenanceRecorder):
         else:
             out = prov
 
-        params = urllib.urlencode({'prov': json.dumps(out)})
+        params = urllib.parse.urlencode({'prov': json.dumps(out)})
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "application/json"}
@@ -2272,14 +2272,14 @@ class ProvenanceRecorderToServiceBulk(ProvenanceRecorder):
     def _preprocess(self):
         self.provurl = urlparse(ProvenanceRecorder.REPOS_URL)
 
-        self.connection = httplib.HTTPConnection(
+        self.connection = httplib.client.HTTPConnection(
             self.provurl.netloc)
 
     def postprocess(self):
         if len(self.bulk)>0:
             
         #self.log("TO SERVICE POSTP________________ID: "+str(self.bulk))
-            params = urllib.urlencode({'prov': json.dumps(self.bulk)})
+            params = urllib.parse.urlencode({'prov': json.dumps(self.bulk)})
             headers = {
                        "Content-type": "application/x-www-form-urlencoded",
                        "Accept": "application/json"}
@@ -2315,7 +2315,7 @@ class ProvenanceRecorderToServiceBulk(ProvenanceRecorder):
 
         if len(self.bulk) == 100:
             #self.log("TO SERVICE ________________ID: "+str(self.bulk))
-            params = urllib.urlencode({'prov': json.dumps(self.bulk)})
+            params = urllib.parse.urlencode({'prov': json.dumps(self.bulk)})
             headers = {
                 "Content-type": "application/x-www-form-urlencoded",
                 "Accept": "application/json"}
@@ -2403,7 +2403,7 @@ class MyProvenanceRecorderWithFeedback(ProvenanceRecorder):
     def _preprocess(self):
         self.provurl = urlparse(ProvenanceRecorder.REPOS_URL)
 
-        self.connection = httplib.HTTPConnection(
+        self.connection = httplib.client.HTTPConnection(
             self.provurl.netloc)
 
     def postprocess(self):
@@ -2427,7 +2427,7 @@ class MyProvenanceRecorderWithFeedback(ProvenanceRecorder):
         self.write(self.porttopemap[prov['name']], "FEEDBACK MESSAGGE FROM RECORDER")
 
         self.bulk.append(out)
-        params = urllib.urlencode({'prov': json.dumps(self.bulk)})
+        params = urllib.parse.urlencode({'prov': json.dumps(self.bulk)})
         headers = {
             "Content-type": "application/x-www-form-urlencoded",
             "Accept": "application/json"}
