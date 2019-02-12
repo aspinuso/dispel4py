@@ -1147,7 +1147,8 @@ class ProvenanceType(GenericPE):
         kwargs['lookupterm']=lookupterm
         #self.apply_derivation_rule('state', None)
         if self.provon:
-            if data == None:
+            self.log(type(data))
+            if data is not None:
                     self._updateState(lookupterm,self.derivationIds[len(self.derivationIds)-1]["DerivedFromDatasetID"])
 
             else:
@@ -1312,15 +1313,15 @@ class ProvenanceType(GenericPE):
                         if '$eq' in rules[key] and s[key]==rules[key]['$eq']:
                             return True
                         elif '$gt' in rules[key] and '$lt' in rules[key]:
-                            if (s[key]>rules[key]['$gt'] and s[key]<rules[key]['$lt']):
+                            if (s[key]>rules[key]['$gt'] and type(s[key]) is not list and s[key]<rules[key]['$lt']):
                                 #self.log("GT-LT") 
                                 return True
                             else:
                                 return False
-                        elif '$gt' in rules[key] and s[key]>rules[key]['$gt']:
+                        elif '$gt' in rules[key] and type(s[key]) is not list and s[key]>rules[key]['$gt']:
                             #self.log("GT") 
                             return True
-                        elif '$lt' in rules[key] and s[key]<rules[key]['$lt']:
+                        elif '$lt' in rules[key] and type(s[key]) is not list and s[key]<rules[key]['$lt']:
                             #self.log("LT") 
                             return True
                         else:
@@ -1437,7 +1438,7 @@ class ProvenanceType(GenericPE):
 
     def buildDerivation(self, data, port=""):
         
-        if data!=None and 'id' in data:
+        if data!=None and type(data)==dict and 'id' in data:
 
             derivation = {'port': port, 
                           'DerivedFromDatasetID': data['id'], 
