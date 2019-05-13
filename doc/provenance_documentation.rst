@@ -1070,12 +1070,3 @@ Example, a Processing Element *CorrCoef* that produces lineage information only 
                    "$gt": 0
        }}}}
 
-
-* **Command Line Activation**\ : To enable proveance activation through command line dispel4py should be executed with specific command line instructions. The following command will execute a local test for the provenance-aware execution of the MySplitAndMerge workflow.
-
-.. code-block:: python
-
-   dispel4py --provenance-config=dispel4py/examples/prov_testing/prov-config-mysplitmerge.json --provenance-repository-url=http://testbed.project-dare.eu/prov/workflowexecutions/insert multi dispel4py/examples/prov_testing/mySplitMerge_prov.py -n 10
-
-
-
