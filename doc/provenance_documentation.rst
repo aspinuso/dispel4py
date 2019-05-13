@@ -1077,21 +1077,5 @@ Example, a Processing Element *CorrCoef* that produces lineage information only 
 
    dispel4py --provenance-config=dispel4py/examples/prov_testing/prov-config-mysplitmerge.json --provenance-repository-url=http://testbed.project-dare.eu/prov/workflowexecutions/insert multi dispel4py/examples/prov_testing/mySplitMerge_prov.py -n 10
 
-ProvenanceSimpleFunctionPE
---------------------------
 
-.. code-block:: python
-
-   ProvenanceSimpleFunctionPE(self, *args, **kwargs)
-
-A *Pattern type* for the native  *SimpleFunctionPE* of dispel4py
-
-ProvenanceIterativePE
----------------------
-
-.. code-block:: python
-
-   ProvenanceIterativePE(self, *args, **kwargs)
-
-A *Pattern type* for the native  *IterativePE* Element of dispel4py
 
